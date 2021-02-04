@@ -4,19 +4,26 @@ const moduleProducts = {
   state: () => {
     return {
       listProducts: [],
-      detail: {},
+      listDetail: {},
       isLoading: false,
       isError: false,
       errMessage: '',
       data: {
         search: '',
         sort: ''
-      }
+      },
+      pagination: {}
     }
   },
   mutations: {
+    setPagination (state, payload) {
+      state.pagination = payload
+    },
     mutationSetListProducts (state, payload) {
       state.listProducts = payload
+    },
+    mutationDetail (state, payload) {
+      state.listDetail = payload
     },
     setIsLoading (state, payload) {
       state.isLoading = payload
@@ -30,14 +37,22 @@ const moduleProducts = {
   },
   actions: {
     actionGetProductsFromAPI (context, data) {
-      axios.get(`http://localhost:3000/products?searchParams=&search=${data.search}&param=price&sort=${data.sort}&page=&limit=100`, { headers: { token: context.rootState.auth.token } }).then((response) => {
+      axios.get(`http://localhost:3000/products?searchParams=&search=${data.search}&param=price&sort=${data.sort}&page=${data.page}&limit=6`, { headers: { token: context.rootState.auth.token } }).then((response) => {
         if (response.data.code === 404) {
           context.commit('setIsError', true)
           context.commit('setErrorMsg', "Sorry, we couldn't find your menu")
         } else {
           context.commit('setIsError', false)
           context.commit('mutationSetListProducts', response.data.data)
+          context.commit('setPagination', response.data.pagination)
         }
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    actionDetailProducts (context, id) {
+      axios.get(`http://localhost:3000/product/${id}`, { headers: { token: context.rootState.auth.token } }).then((response) => {
+        context.commit('mutationDetail', response.data)
       }).catch((err) => {
         console.log(err)
       })
@@ -50,11 +65,24 @@ const moduleProducts = {
           console.log(err)
         })
       })
+    },
+    deleteProducts (context, id) {
+      axios.delete(`http://localhost:3000/products/${id}`, { headers: { token: context.rootState.auth.token } }).then((response) => {
+        context.commit(response, id)
+      }).catch((err) => {
+        console.log(err)
+      })
     }
   },
   getters: {
     getListProducts (state) {
       return state.listProducts
+    },
+    getDetailProducts (state) {
+      return state.listDetail
+    },
+    getPagination (state) {
+      return state.pagination
     },
     isError (state) {
       return state.isError

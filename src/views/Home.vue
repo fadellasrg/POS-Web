@@ -44,14 +44,14 @@
                       <!-- {{element.name}}
                       {{element.price}} -->
                     </div>
-                    <!-- <div style="display: flex;" class="overflow-auto">
-                      <b-pagination style="align-self: flex-end" @input="paginationProduct('')"
-                      v-model="currentPage" pills
-                      :total-rows="rowsData"
-                      :per-page="limitData"
+                    <div style="display: flex;" class="overflow-auto">
+                      <b-pagination style="align-self: flex-end;" @input="action()"
+                      v-model="productsPagination.page" pills
+                      :total-rows="productsPagination.totalData"
+                      :per-page="productsPagination.limit"
                       size="sm">
                       </b-pagination>
-                    </div> -->
+                    </div>
                   </div>
                 </div>
               </div>
@@ -166,6 +166,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      productsPagination: 'products/getPagination',
       gettersListProducts: 'products/getListProducts',
       productsIsError: 'products/isError',
       productsErrMsg: 'products/errMessage'
@@ -181,7 +182,8 @@ export default {
     action: function () {
       const data = {
         search: this.form.inputSearch,
-        sort: this.form.sortProducts
+        sort: this.form.sortProducts,
+        page: this.productsPagination.page ? this.productsPagination.page : '1'
       }
       this.actionGetProductsFromAPI(data)
     }
@@ -197,13 +199,6 @@ export default {
 #font-header{
   font-size: 30px;
   font-weight: bold;
-}
-#side-bar img{
-  margin-top: 2px;
-  margin-left: 5px;
-  margin-bottom: 35px;
-  height: 32px;
-  width: auto;
 }
 #optionSort{
   display: flex;

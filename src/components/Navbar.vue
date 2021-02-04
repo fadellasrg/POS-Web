@@ -1,10 +1,9 @@
 <template>
     <div>
-        <img style="padding-right: 25px; padding-bottom:20px; width: 70%; height: 80%" src="../assets/img/logout.png" @click="onLogout()" class="img-fluid" alt="Logout">
         <nav id="side-bar" class="navbar navbar-light">
             <router-link to="/"><img src="../assets/img/fork.png" class="img-fluid" alt="Food"></router-link>
             <router-link to="/history"><img src="../assets/img/clipboard.png" class="img-fluid" alt="Clipboard"></router-link>
-            <img v-b-modal.modal-center src="../assets/img/add.png" />
+            <img style="margin-bottom: 28px;" v-b-modal.modal-center src="../assets/img/add.png" />
             <b-modal ref="my-modalAdd" hide-footer id="modal-center" centered title="Add Item">
                 <div style="height: 280px" class="container-fluid">
                     <input type="text" v-model="form.name" class="form-control" placeholder="Name">
@@ -19,8 +18,9 @@
                     </select>
                 </div>
                 <button @click="onAdd()" class="btn add-btn">Add</button>
-                <button class="btn cancel-btn">Cancel</button>
+                <button @click="hideModal()" class="btn cancel-btn">Cancel</button>
             </b-modal>
+        <img src="../assets/img/logout.png" @click="onLogout()" class="img-fluid" alt="Logout">
         </nav>
     </div>
 </template>
@@ -67,12 +67,22 @@ export default {
           this.$router.push('/login')
         }
       })
+    },
+    hideModal () {
+      this.$refs['my-modalAdd'].hide()
     }
   }
 }
 </script>
 
 <style scoped>
+#side-bar img{
+  margin-top: 2px;
+  margin-left: 5px;
+  margin-bottom: 35px;
+  height: 32px;
+  width: auto;
+}
 .add-btn{
     background-color: rgba(242,79,138, 0.8);
     width: 18%;
