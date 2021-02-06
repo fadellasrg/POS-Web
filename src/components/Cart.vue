@@ -45,38 +45,10 @@ export default {
         return el.id_product !== idProduct
       })
       this.dataCart = newCart
+      // console.log(this.dataCartProducts)
       console.log(this.dataCart)
-      // console.log(this.dataCart)
       // console.log(newCart)
     }
-  //   btnMin (idProduct) {
-  //     this.dataCart.map((item) => {
-  //       if (item.id_product === idProduct) {
-  //         item.qty -= 1
-  //         item.totalPrice = item.qty * item.price
-  //         if (item.qty === 0) {
-  //           const alert = confirm('Delete this product?')
-  //           if (alert === true) {
-  //             const newCart = this.dataCart.filter((item) => {
-  //               return item.id_product !== idProduct
-  //             })
-  //             this.dataCart = newCart
-  //           } else {
-  //             item.qty = 1
-  //             item.totalPrice = item.qty * item.price
-  //           }
-  //         }
-  //       }
-  //     })
-  //   },
-  //   btnPlus: function (idProduct) {
-  //     this.dataCart.map((item) => {
-  //       if (item.id_product === idProduct) {
-  //         item.qty += 1
-  //         item.totalPrice = item.qty * item.price
-  //       }
-  //     })
-  //   }
   }
 }
 </script>

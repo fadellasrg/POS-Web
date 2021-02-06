@@ -31,7 +31,7 @@
             />
             <div id="details" class="card-body">
               Name: {{ getDetail.name }} <br />
-              Price: {{ getDetail.price }} <br />
+              Price: {{ convertRP(Number(getDetail.price)) }} <br />
               Category: {{ getDetail.category }} <br />
             </div>
             <button

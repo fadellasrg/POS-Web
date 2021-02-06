@@ -104,7 +104,13 @@
                         <td>{{ element.cashier }}</td>
                         <td>{{ element.date }}</td>
                         <td>{{ element.orders }}</td>
-                        <td>{{ Number(element.amount * 0.1) + Number(element.amount) }}</td>
+                        <td>
+                          {{
+                            convertRP
+                            (Number(element.amount * 0.1) +
+                              Number(element.amount))
+                          }}
+                        </td>
                         <td>
                           <button
                             id="btn-detail"
@@ -163,15 +169,12 @@
                           <td>{{ item.date }}</td>
                           <td>{{ item.name }}</td>
                           <td>{{ item.qty }}</td>
-                          <td>{{ item.price }}</td>
-                          <td>{{ item.price * 0.1 }}</td>
+                          <td>{{ convertRP(item.price) }}</td>
+                          <td>{{ convertRP(item.price * 0.1) }}</td>
                           <td>
-                            {{
-                              item.price * item.qty + item.price * 0.1
-                            }}
+                            {{ convertRP(item.price * item.qty + item.price * 0.1) }}
                           </td>
-                          <td>
-                          </td>
+                          <td></td>
                         </tr>
                       </tbody>
                     </table>
