@@ -3,7 +3,12 @@
     <div class="row">
       <div class="col-md-2 col-sm-4">
         <nav class="navbar navbar-light">
-          <img @click="btnStrip()" src="../assets/img/strip.png" class="img-thumbnail mt-3" alt="Menu">
+          <img
+            @click="btnStrip()"
+            src="../assets/img/strip.png"
+            class="img-thumbnail mt-3"
+            alt="Menu"
+          />
         </nav>
       </div>
       <div class="col-md-7 col-sm-6 text-center">
@@ -14,25 +19,36 @@
       <div class="row">
         <div class="col-md-1 text-center">
           <div v-if="btnStripShow">
-            <componentNavbar/>
+            <componentNavbar />
           </div>
         </div>
-        <div style="display: flex; justify-content: center;" class="col-md-9">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top" :src="`${serverURL}/images/${getDetail.data[0].images}`" :alt="getDetail.data[0].image">
-              <div id="details" class="card-body">
-                Name: {{getDetail.data[0].name}} <br>
-                Price: {{getDetail.data[0].price}} <br>
-                Category: {{getDetail.data[0].category}} <br>
-              </div>
-              <button @click="deleteData()" id="delete-btn" type="button" class="btn">Delete</button>
+        <div style="display: flex; justify-content: center" class="col-md-9">
+          <div class="card" style="width: 18rem">
+            <img
+              class="card-img-top"
+              :src="`${serverURL}/images/${getDetail.images}`"
+              :alt="getDetail.image"
+            />
+            <div id="details" class="card-body">
+              Name: {{ getDetail.name }} <br />
+              Price: {{ getDetail.price }} <br />
+              Category: {{ getDetail.category }} <br />
+            </div>
+            <button
+              @click="deleteData()"
+              id="delete-btn"
+              type="button"
+              class="btn"
+            >
+              Delete
+            </button>
           </div>
-          <!-- {{getDetail}} -->
         </div>
       </div>
     </div>
   </div>
 </template>
+
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import dataMixins from '../helpers/mixins'
@@ -73,14 +89,14 @@ export default {
 </script>
 
 <style scoped>
-#details{
+#details {
   padding: 5px;
   font-size: 20px;
   font-weight: bold;
 }
-#delete-btn{
+#delete-btn {
   background-color: rgba(240, 51, 120, 0.8);
-  color: rgba(255,255,255, 0.8);
+  color: rgba(255, 255, 255, 0.8);
   margin: 0;
   margin-top: 5px;
   width: 50%;

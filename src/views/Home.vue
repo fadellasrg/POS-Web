@@ -38,8 +38,8 @@
                     <div v-if="productsIsError">
                       {{productsErrMsg}}
                     </div>
-                    <div v-else class="col-lg-4 col-md-6 col-6" v-for="(element, index) in gettersListProducts" :key="index">
-                      <componentProducts :element = "element"/>
+                    <div v-else class="col-lg-4 col-md-6 col-6" v-for="(item, index) in gettersListProducts" :key="index">
+                      <componentProducts :element = "item" v-on:actionCart="actChild" />
                       <!-- <componentProducts :element = "element" v-on:actionCart="actChild" /> -->
                       <!-- {{element.name}}
                       {{element.price}} -->
@@ -55,8 +55,10 @@
                   </div>
                 </div>
               </div>
-              <!-- <div id="hrefCart" class="col-md-4 col-sm-12 text-center" style="min-height: 100vh;">
-                <div class="container-fluid">
+              <!--  -->
+              <div id="hrefCart" class="col-md-4 col-sm-12 text-center" style="min-height: 100vh;">
+                <componentCart :dataCartProducts = "dataCart"/>
+                <!-- <div class="container-fluid">
                   <div style="display: flex" class="row cart">
                     <div v-for="(item, index) in dataCart" :key="index">
                         <div class="row cart">
@@ -135,8 +137,8 @@
                     </b-modal>
                     </button>
                     <button v-if="dataCart.length > 0" v-on:click="cartCancel()" id="btn-checkoutBlue" class="btn" type="button">Cancel</button>
-                  </div>
-            </div> -->
+                  </div> -->
+            </div>
           </div>
     </div>
   </div>
@@ -148,6 +150,7 @@ import { mapGetters, mapActions } from 'vuex'
 import dataMixins from '../helpers/mixins'
 import componentNavbar from '../components/Navbar'
 import componentProducts from '../components/Products'
+import componentCart from '../components/Cart'
 export default {
   mixins: [dataMixins],
   name: 'Home',
@@ -157,12 +160,14 @@ export default {
       form: {
         inputSearch: '',
         sortProducts: ''
-      }
+      },
+      dataCart: []
     }
   },
   components: {
     componentNavbar,
-    componentProducts
+    componentProducts,
+    componentCart
   },
   computed: {
     ...mapGetters({
@@ -176,16 +181,43 @@ export default {
     ...mapActions({
       actionGetProductsFromAPI: 'products/actionGetProductsFromAPI'
     }),
-    btnSearch: function () {
+    btnSearch () {
       this.btnSearchShow = !this.btnSearchShow
     },
-    action: function () {
+    action () {
       const data = {
         search: this.form.inputSearch,
         sort: this.form.sortProducts,
         page: this.productsPagination.page ? this.productsPagination.page : '1'
       }
       this.actionGetProductsFromAPI(data)
+    },
+    actChild (element) {
+      // this.dataCart = [...this.dataCart, element]
+      const checkProduct = this.dataCart.filter((item) => {
+        return item.id_product === element.id_product
+      })
+      if (checkProduct.length >= 1) {
+        // alert('produk sudah adaaa')
+        this.dataCart.forEach((i) => {
+          if (i.id_product === element.id_product) {
+            i.qty += 1
+          }
+        })
+      } else {
+        const newData = {
+          invoice: '10932',
+          cashier: 'Cashier 26',
+          id_product: element.id_product,
+          qty: 1, // default 1
+          name: element.name,
+          price: element.price,
+          image: element.image,
+          images: element.images,
+          totalPrice: 1 * element.price
+        }
+        this.dataCart = [...this.dataCart, newData]
+      }
     }
   },
   mounted () {

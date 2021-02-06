@@ -52,7 +52,7 @@ const moduleProducts = {
     },
     actionDetailProducts (context, id) {
       axios.get(`http://localhost:3000/product/${id}`, { headers: { token: context.rootState.auth.token } }).then((response) => {
-        context.commit('mutationDetail', response.data)
+        context.commit('mutationDetail', response.data.data[0])
       }).catch((err) => {
         console.log(err)
       })
@@ -71,6 +71,16 @@ const moduleProducts = {
         context.commit(response, id)
       }).catch((err) => {
         console.log(err)
+      })
+    },
+    editProducts (context, data) {
+      return new Promise((resolve, reject) => {
+        axios.patch(`http://localhost:3000/products/${data.id}`, data.fd, { headers: { token: context.rootState.auth.token } }).then((response) => {
+          resolve(response.data)
+          console.log(response.data)
+        }).catch((err) => {
+          console.log(err)
+        })
       })
     }
   },

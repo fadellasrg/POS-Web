@@ -33,7 +33,7 @@ export default {
         password: this.password
       }
       this.actionLogin(data).then((response) => {
-        console.log(response)
+        // console.log(response)
         if (response.code === 404 || response.code === 500) {
           alert(response.message)
         } else {

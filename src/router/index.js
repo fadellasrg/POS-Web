@@ -5,6 +5,8 @@ import Detail from '../views/Detail.vue'
 import Login from '../views/Login.vue'
 import store from '../store/index'
 import Register from '../views/Register.vue'
+import Edit from '../views/Edit.vue'
+import History from '../views/History.vue'
 
 Vue.use(VueRouter)
 
@@ -32,6 +34,18 @@ const routes = [
     name: 'Login',
     component: Login,
     meta: { auth: false }
+  },
+  {
+    path: '/edit/:id',
+    name: 'Edit',
+    component: Edit,
+    meta: { auth: true }
+  },
+  {
+    path: '/history',
+    name: 'History',
+    component: History,
+    meta: { auth: true }
   }
 ]
 
