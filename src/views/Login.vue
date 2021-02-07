@@ -1,9 +1,10 @@
 <template>
   <div>
-    <div class="container p-5 m-5">
+    <!-- <div class="container p-5 m-5">
       <div class="card">
-        <div class="card-body">
-          <form @submit.prevent="onSubmitLogin()">
+        <div class="card-body"> -->
+          <form @submit.prevent="onSubmitLogin()" class="box">
+            <div style="font-size: 30px; color: white;">Login</div>
             <input
               v-model="email"
               type="text"
@@ -17,11 +18,14 @@
               placeholder="Password"
             />
             <button type="submit" class="btn login-btn">Login</button>
+            <router-link to="/register" style="color: white;">
+            Register
+            </router-link>
           </form>
         </div>
-      </div>
+      <!-- </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -44,7 +48,6 @@ export default {
       }
       this.actionLogin(data)
         .then(response => {
-          // console.log(response)
           if (response.code === 404 || response.code === 500) {
             alert(response.message)
           } else {
@@ -61,11 +64,35 @@ export default {
 
 <style scoped>
 .login-btn {
-  background-color: rgba(242, 79, 138, 0.8);
-  width: 18%;
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  color: rgba(242, 79, 138, 0.8);
+  margin-top: 20px;
   border-radius: 6px;
-  margin-right: 100px;
+  margin-bottom: 20px;
+}
+.box {
+  width: 350px;
+  padding: 40px;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(242, 79, 138, 0.8);
+  text-align: center;
+  border-radius: 50px;
+}
+.box input {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid rgb(255, 255, 255);
+  padding: 14px 10px;
+  width: 250px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
 }
 </style>

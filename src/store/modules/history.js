@@ -56,11 +56,7 @@ const moduleHistory = {
     insertHistory (context, data) {
       return new Promise((resolve, reject) => {
         axios.post('http://localhost:3000/history', data, { headers: { token: context.rootState.auth.token } }).then((response) => {
-          if (response.data.code === 500) {
-            alert(response.data.message)
-          } else {
-            resolve(response.data)
-          }
+          resolve(response.data)
         }).catch((err) => {
           console.log(err)
         })

@@ -33,7 +33,7 @@
       >
         Cart
         <a href="#hrefCart">
-          <span class="badge rounded-pill text-white">0</span>
+          <span class="badge rounded-pill text-white">{{ dataCart.length }}</span>
         </a>
       </div>
     </div>
@@ -178,10 +178,12 @@
               >
                 <div class="row">
                   <div style="padding-bottom: 40px;" class="col-md-6">
-                    <div style="font-size: 12px;">Cashier: Cashier 2</div>
+                    <div style="font-size: 12px;">
+                      Cashier: {{ gettersName }}
+                    </div>
                   </div>
                   <div class="col-md-6 text-right">
-                    <div>Receipt no: #10933</div>
+                    <div>Receipt no: #{{ dataCart[0].invoice }}</div>
                   </div>
                 </div>
                 <div v-for="(item, index) in dataCart" :key="index" class="row">
@@ -276,7 +278,8 @@ export default {
         sortProducts: ''
       },
       dataCart: [],
-      total: 0
+      total: 0,
+      invoices: 0
     }
   },
   components: {
@@ -289,7 +292,8 @@ export default {
       productsPagination: 'products/getPagination',
       gettersListProducts: 'products/getListProducts',
       productsIsError: 'products/isError',
-      productsErrMsg: 'products/errMessage'
+      productsErrMsg: 'products/errMessage',
+      gettersName: 'auth/getName'
     })
   },
   methods: {
@@ -314,6 +318,11 @@ export default {
         this.total = this.total + el.price * el.qty
       })
     },
+    randomInvoice (min, max) {
+      min = Math.ceil(0)
+      max = Math.floor(100000)
+      return Math.floor(Math.random() * (max - min + 1) + min)
+    },
     actChild (element) {
       const checkProduct = this.dataCart.filter(item => {
         return item.id_product === element.id_product
@@ -327,8 +336,8 @@ export default {
         })
       } else {
         const newData = {
-          invoice: '10933',
-          cashier: 'Cashier 2',
+          invoice: this.randomInvoice(this.invoices),
+          cashier: this.gettersName,
           id_product: element.id_product,
           qty: 1, // default 1
           name: element.name,
@@ -384,12 +393,23 @@ export default {
       this.setTotal()
     },
     cartCancel () {
-      // this.$router.go('/')
       this.dataCart = []
     },
     checkout () {
+      this.dataCart.forEach(el => {
+        el.invoice = this.dataCart[0].invoice
+      })
       this.actionInsertHistory(this.dataCart)
         .then(response => {
+          console.log(this.dataCart)
+          if (response.code === 500) {
+            const alert = confirm(response.message)
+            if (alert === true) {
+              this.dataCart = []
+            } else {
+              this.dataCart = []
+            }
+          }
           console.log(response)
         })
         .catch(err => {

@@ -70,16 +70,13 @@
                   style="overflow: scroll; width: 100%; height: auto; padding-top: 20px"
                 >
                   <div class="row">
-                    <h5 style="padding: 5px 0px 0px 40px" class="col-2">
-                      Search
-                    </h5>
-                    <div style="padding: 0px 200px 20px 0px;" class="col-10">
-                      <b-form-input
+                    <div style="padding: 0px 0px 20px 30px;" class="form-inline">
+                      <input
                         type="text"
                         v-model="form.inputSearch"
-                        @keyup="action()"
                         placeholder="Invoice"
-                      ></b-form-input>
+                      >
+                    <button id="btn-search" class="btn" type="button" @click="action()">Search</button>
                     </div>
                   </div>
                   <table class="table table-striped table-hover">
@@ -106,9 +103,10 @@
                         <td>{{ element.orders }}</td>
                         <td>
                           {{
-                            convertRP
-                            (Number(element.amount * 0.1) +
-                              Number(element.amount))
+                            convertRP(
+                              Number(element.amount * 0.1) +
+                                Number(element.amount)
+                            )
                           }}
                         </td>
                         <td>
@@ -172,7 +170,11 @@
                           <td>{{ convertRP(item.price) }}</td>
                           <td>{{ convertRP(item.price * 0.1) }}</td>
                           <td>
-                            {{ convertRP(item.price * item.qty + item.price * 0.1) }}
+                            {{
+                              convertRP(
+                                item.price * item.qty + item.price * 0.1
+                              )
+                            }}
                           </td>
                           <td></td>
                         </tr>
@@ -242,18 +244,6 @@ export default {
   color: rgba(255, 255, 255, 0.8);
   margin-top: 5px;
 }
-#btnDelete {
-  background-color: rgba(240, 51, 120, 0.8);
-  width: 75%;
-  color: rgba(255, 255, 255, 0.8);
-  margin-top: 5px;
-}
-#btnEdit {
-  background-color: rgba(87, 202, 213, 0.8);
-  width: 75%;
-  color: rgba(255, 255, 255, 0.8);
-  margin-top: 5px;
-}
 #history-box {
   width: auto;
   height: 170px;
@@ -293,6 +283,18 @@ export default {
   );
   filter: drop-shadow(10px 15px 10px rgba(241, 201, 236, 0.5));
   border-radius: 10px;
+}
+#btn-search {
+  font-size: 13px;
+  position: relative;
+  right: 0;
+  left: 0px;
+  border-radius: 0px;
+  background-color: rgba(242, 79, 138, 0.8);
+  /* width: 100%; */
+  color: rgba(255, 255, 255, 0.8);
+  /* margin-top: 10px; */
+  height: 32px;
 }
 .img-strip {
   margin-top: 18px;

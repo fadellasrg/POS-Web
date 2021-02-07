@@ -45,9 +45,7 @@ export default {
         return el.id_product !== idProduct
       })
       this.dataCart = newCart
-      // console.log(this.dataCartProducts)
       console.log(this.dataCart)
-      // console.log(newCart)
     }
   }
 }
