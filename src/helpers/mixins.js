@@ -14,6 +14,11 @@ const mixins = {
         .replace(',00', '')
         .replace('Rp', 'Rp.')
     }
+  },
+  directives: {
+    white: function (el, binding) {
+      el.style = `color: ${binding.value.color}`
+    }
   }
 }
 

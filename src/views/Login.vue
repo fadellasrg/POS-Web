@@ -18,7 +18,7 @@
               placeholder="Password"
             />
             <button type="submit" class="btn login-btn">Login</button>
-            <router-link to="/register" style="color: white;">
+            <router-link to="/register" v-white="{ color: 'white' }">
             Register
             </router-link>
           </form>
@@ -30,7 +30,9 @@
 
 <script>
 import { mapActions } from 'vuex'
+import dataMixins from '../helpers/mixins'
 export default {
+  mixins: [dataMixins],
   data () {
     return {
       email: '',

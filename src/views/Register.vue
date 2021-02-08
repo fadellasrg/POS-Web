@@ -30,7 +30,7 @@
         <option value="1">Cashier</option>
       </select>
       <button type="submit" class="btn register-btn">Register</button>
-      <router-link to="/login" style="color: white;">
+      <router-link to="/login" v-white="{ color: 'white' }">
         Login
       </router-link>
     </form>
@@ -39,7 +39,9 @@
 
 <script>
 import { mapActions } from 'vuex'
+import dataMixins from '../helpers/mixins'
 export default {
+  mixins: [dataMixins],
   data () {
     return {
       name: '',
