@@ -32,7 +32,7 @@ const moduleHistory = {
   },
   actions: {
     actionGetHistoryFromAPI (context, data) {
-      axios.get(`http://localhost:3000/history?searchParams=&search=${data.search}&param=&sort=&page=${data.page}&limit=`, { headers: { token: context.rootState.auth.token } }).then((response) => {
+      axios.get(`http://localhost:3000/history?searchParams=&search=${data.search}&param=date&sort=&page=${data.page}&limit=`, { headers: { token: context.rootState.auth.token } }).then((response) => {
         // console.log(response.data)
         if (response.data.code === 404) {
           context.commit('setIsError', true)
