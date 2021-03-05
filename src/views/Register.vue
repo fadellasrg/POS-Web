@@ -1,36 +1,36 @@
 <template>
   <div>
     <form @submit.prevent="onSubmitRegister()" class="box">
-      <div style="font-size: 30px; color: white;">Register</div>
+      <div style="font-size: 30px; color: black;">Register</div>
       <input
         v-model="name"
         type="text"
         class="form-control mb-2"
-        placeholder="Name"
+        placeholder="Name" required
       />
       <input
         v-model="email"
-        type="text"
+        type="email"
         class="form-control mb-2"
-        placeholder="Email"
+        placeholder="Email" required
       />
       <input
         v-model="password"
         type="password"
         class="form-control mb-2"
-        placeholder="Password"
+        placeholder="Password" required
       />
       <select
         v-model="access"
         style="margin-top: 10px; width: 100%"
-        class="form-select form-select-lg mb-3"
+        class="form-select form-select-lg mb-3" required
       >
         <option disabled value="">Access</option>
         <option value="0">Admin</option>
         <option value="1">Cashier</option>
       </select>
       <button type="submit" class="btn register-btn">Register</button>
-      <router-link to="/login" v-white="{ color: 'white' }">
+      <router-link to="/login" style="color: black;">
         Login
       </router-link>
     </form>
@@ -82,7 +82,7 @@ export default {
 .register-btn {
   background-color: rgba(255, 255, 255, 0.8);
   width: 100%;
-  color: rgba(242, 79, 138, 0.8);
+  color: black;
   margin: 0;
   border-radius: 6px;
   margin-bottom: 20px;
@@ -94,9 +94,9 @@ export default {
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(242, 79, 138, 0.8);
+  background: #FFB6C1;
   text-align: center;
-  border-radius: 50px;
+  border-radius: 10px;
 }
 .box input {
   border: 0;
@@ -108,7 +108,7 @@ export default {
   padding: 14px 10px;
   width: 250px;
   outline: none;
-  color: white;
+  color: black;
   border-radius: 24px;
 }
 </style>

@@ -32,7 +32,7 @@ const moduleHistory = {
   },
   actions: {
     actionGetHistoryFromAPI (context, data) {
-      axios.get(`http://localhost:3000/history?searchParams=&search=${data.search}&param=date&sort=&page=${data.page}&limit=`, { headers: { token: context.rootState.auth.token } }).then((response) => {
+      axios.get(`${context.rootState.setURL}/history?searchParams=&search=${data.search}&param=&sort=desc&page=${data.page}&limit=`, { headers: { token: context.rootState.auth.token } }).then((response) => {
         // console.log(response.data)
         if (response.data.code === 404) {
           context.commit('setIsError', true)
@@ -47,7 +47,7 @@ const moduleHistory = {
       })
     },
     actionDetailHistory (context, data) {
-      axios.get(`http://localhost:3000/detailHistory/${data}`, { headers: { token: context.rootState.auth.token } }).then((response) => {
+      axios.get(`${context.rootState.setURL}/detailHistory/${data}`, { headers: { token: context.rootState.auth.token } }).then((response) => {
         context.commit('mutationDetail', response.data.data)
       }).catch((err) => {
         console.log(err)
@@ -55,7 +55,7 @@ const moduleHistory = {
     },
     insertHistory (context, data) {
       return new Promise((resolve, reject) => {
-        axios.post('http://localhost:3000/history', data, { headers: { token: context.rootState.auth.token } }).then((response) => {
+        axios.post(`${context.rootState.setURL}/history`, data, { headers: { token: context.rootState.auth.token } }).then((response) => {
           resolve(response.data)
         }).catch((err) => {
           console.log(err)

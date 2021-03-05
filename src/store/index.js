@@ -9,6 +9,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state () {
     return {
+      setURL: process.env.VUE_APP_URL
     }
   },
   getters: {

@@ -37,7 +37,7 @@ const moduleProducts = {
   },
   actions: {
     actionGetProductsFromAPI (context, data) {
-      axios.get(`http://localhost:3000/products?searchParams=&search=${data.search}&param=price&sort=${data.sort}&page=${data.page}&limit=6`, { headers: { token: context.rootState.auth.token } }).then((response) => {
+      axios.get(`${context.rootState.setURL}/products?searchParams=&search=${data.search}&param=price&sort=${data.sort}&page=${data.page}&limit=6`, { headers: { token: context.rootState.auth.token } }).then((response) => {
         if (response.data.code === 404) {
           context.commit('setIsError', true)
           context.commit('setErrorMsg', "Sorry, we couldn't find your menu")
@@ -51,7 +51,7 @@ const moduleProducts = {
       })
     },
     actionDetailProducts (context, id) {
-      axios.get(`http://localhost:3000/product/${id}`, { headers: { token: context.rootState.auth.token } }).then((response) => {
+      axios.get(`${context.rootState.setURL}/product/${id}`, { headers: { token: context.rootState.auth.token } }).then((response) => {
         context.commit('mutationDetail', response.data.data[0])
       }).catch((err) => {
         console.log(err)
@@ -59,7 +59,7 @@ const moduleProducts = {
     },
     insertProducts (context, data) {
       return new Promise((resolve, reject) => {
-        axios.post('http://localhost:3000/products', data, { headers: { token: context.rootState.auth.token } }).then((response) => {
+        axios.post(`${context.rootState.setURL}/products`, data, { headers: { token: context.rootState.auth.token } }).then((response) => {
           resolve(response.data.message)
         }).catch((err) => {
           console.log(err)
@@ -67,7 +67,7 @@ const moduleProducts = {
       })
     },
     deleteProducts (context, id) {
-      axios.delete(`http://localhost:3000/products/${id}`, { headers: { token: context.rootState.auth.token } }).then((response) => {
+      axios.delete(`${context.rootState.setURL}/products/${id}`, { headers: { token: context.rootState.auth.token } }).then((response) => {
         context.commit(response, id)
       }).catch((err) => {
         console.log(err)
@@ -75,7 +75,7 @@ const moduleProducts = {
     },
     editProducts (context, data) {
       return new Promise((resolve, reject) => {
-        axios.patch(`http://localhost:3000/products/${data.id}`, data.fd, { headers: { token: context.rootState.auth.token } }).then((response) => {
+        axios.patch(`${context.rootState.setURL}/products/${data.id}`, data.fd, { headers: { token: context.rootState.auth.token } }).then((response) => {
           resolve(response.data)
           console.log(response.data)
         }).catch((err) => {

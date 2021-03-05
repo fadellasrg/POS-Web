@@ -18,7 +18,7 @@ const moduleAuth = {
   actions: {
     register (context, data) {
       return new Promise((resolve, reject) => {
-        axios.post('http://localhost:3000/register', data).then((response) => {
+        axios.post(`${context.rootState.setURL}/register`, data).then((response) => {
           localStorage.setItem('token', response.data.token)
           context.commit('setToken', response.data.token)
           resolve(response.data)
@@ -29,7 +29,7 @@ const moduleAuth = {
     },
     login (context, data) {
       return new Promise((resolve, reject) => {
-        axios.post('http://localhost:3000/login', data).then((response) => {
+        axios.post(`${context.rootState.setURL}/login`, data).then((response) => {
           localStorage.setItem('token', response.data.token)
           localStorage.setItem('name', response.data.name)
           context.commit('setToken', response.data.token)

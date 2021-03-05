@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-body"> -->
           <form @submit.prevent="onSubmitLogin()" class="box">
-            <div style="font-size: 30px; color: white;">Login</div>
+            <div style="font-size: 30px; color: black">Login</div>
             <input
               v-model="email"
               type="text"
@@ -66,9 +66,9 @@ export default {
 
 <style scoped>
 .login-btn {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: white;
   width: 100%;
-  color: rgba(242, 79, 138, 0.8);
+  color: black;
   margin-top: 20px;
   border-radius: 6px;
   margin-bottom: 20px;
@@ -80,9 +80,9 @@ export default {
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(242, 79, 138, 0.8);
+  background: #FFB6C1;
   text-align: center;
-  border-radius: 50px;
+  border-radius: 10px;
 }
 .box input {
   border: 0;
@@ -94,7 +94,7 @@ export default {
   padding: 14px 10px;
   width: 250px;
   outline: none;
-  color: white;
+  color: black;
   border-radius: 24px;
 }
 </style>

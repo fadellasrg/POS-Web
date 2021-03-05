@@ -65,7 +65,7 @@
             </div>
             <div class="row container-fluid" style="padding: 50px 0px 40px 0px">
               <div class="col-md-12">
-                <div id="revenue">Revenue</div>
+                <div id="revenue">Recent Order</div>
                 <div
                   style="overflow: scroll; width: 100%; height: auto; padding-top: 20px"
                 >
@@ -75,8 +75,9 @@
                         type="text"
                         v-model="form.inputSearch"
                         placeholder="Invoice"
+                        @keyup="action()"
                       >
-                    <button id="btn-search" class="btn" type="button" @click="action()">Search</button>
+                    <button id="btn-search" class="btn" type="button">Search</button>
                     </div>
                   </div>
                   <table class="table table-striped table-hover">
