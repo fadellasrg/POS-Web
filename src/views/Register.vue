@@ -1,7 +1,8 @@
 <template>
   <div>
     <form @submit.prevent="onSubmitRegister()" class="box">
-      <div style="font-size: 30px; color: black;">Register</div>
+      <img src="../assets/img/mugs.png" alt="" style="width: 100%;" class="mb-2">
+      <!-- <div style="font-size: 30px; color: black;">Register</div> -->
       <input
         v-model="name"
         type="text"
@@ -30,7 +31,7 @@
         <option value="1">Cashier</option>
       </select>
       <button type="submit" class="btn register-btn">Register</button>
-      <router-link to="/login" style="color: black;">
+      <router-link to="/login" style="color: white;">
         Login
       </router-link>
     </form>
@@ -94,7 +95,7 @@ export default {
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #FFB6C1;
+  background: #f192a1;
   text-align: center;
   border-radius: 10px;
 }

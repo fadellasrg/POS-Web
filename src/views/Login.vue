@@ -4,7 +4,8 @@
       <div class="card">
         <div class="card-body"> -->
           <form @submit.prevent="onSubmitLogin()" class="box">
-            <div style="font-size: 30px; color: black">Login</div>
+            <img src="../assets/img/mugs.png" alt="" style="width: 100%;" class="mb-3">
+            <!-- <div style="font-size: 30px; color: white;">Login</div> -->
             <input
               v-model="email"
               type="text"
@@ -80,7 +81,7 @@ export default {
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #FFB6C1;
+  background: #f192a1;
   text-align: center;
   border-radius: 10px;
 }
