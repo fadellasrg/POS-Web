@@ -1,5 +1,5 @@
 # Mugs Coffee
-Mugs Coffee is a Point of Sales website that was built to make it easier for Cafe owners make transactions with buyers, manage all the available menus and also sales reports.
+Mugs Coffee is a Point of Sales website that was built to make it easier for Cafe owners make transactions with buyers, manage all the available menus and sales reports. This app also equipped with two role access for admin and cashier.
 This is the frontend service for this app. You can see the backend service [here](https://github.com/fadellasrg/POS-API).
 
 ## Modules
