@@ -24,4 +24,8 @@ This is the frontend service for this app. You can see the backend service [here
 ### Add Menu
 ![add item](https://user-images.githubusercontent.com/50002096/110149878-237efa00-7e11-11eb-9d89-d5d24a206bf9.png)
 ### History
-![history](https://user-images.githubusercontent.com/50002096/110149978-46a9a980-7e11-11eb-9fb4-4133a21df949.png)
+![historyyy](https://user-images.githubusercontent.com/50002096/110151875-94271600-7e13-11eb-806f-0ab09e4c3c1c.png)
+
+## Documentation
+- [Backend](https://github.com/fadellasrg/POS-API)
+- [Deploy]
