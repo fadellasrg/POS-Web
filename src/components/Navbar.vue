@@ -88,7 +88,8 @@ export default {
   methods: {
     ...mapActions({
       actionLogout: 'auth/logout',
-      actionInsert: 'products/insertProducts'
+      actionInsert: 'products/insertProducts',
+      actionGetProductsFromAPI: 'products/actionGetProductsFromAPI'
     }),
     uploadFile (el) {
       this.form.images = el.target.files[0]
@@ -102,8 +103,19 @@ export default {
       fd.append('image', this.form.images)
       this.actionInsert(fd)
         .then(response => {
-          alert(response)
-          this.$router.go('/')
+          console.log(response)
+          if (response.code === 500) {
+            alert(response.message)
+          } else {
+            this.$refs['my-modalAdd'].hide()
+          }
+          const data = {
+            search: '',
+            sort: '',
+            page: ''
+          }
+          this.actionGetProductsFromAPI(data)
+          // this.$router.go('/')
         })
         .catch(err => {
           console.log(err)

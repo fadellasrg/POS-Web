@@ -38,12 +38,12 @@
                   class="form-control"
                   placeholder="Price"
                 />
-                <input
+                <!-- <input
                   type="text"
                   v-model="getDetail.image"
                   class="form-control"
                   placeholder="File Name"
-                />
+                /> -->
                 <input
                   @change="uploadFile($event)"
                   type="file"
@@ -109,7 +109,7 @@ export default {
     onEdit () {
       const fd = new FormData()
       fd.append('name', this.getDetail.name)
-      fd.append('image', this.getDetail.image)
+      // fd.append('image', this.getDetail.image)
       fd.append('price', this.getDetail.price)
       fd.append('id_category', this.getDetail.id_category)
       fd.append('image', this.getDetail.images)
@@ -122,7 +122,7 @@ export default {
           if (response.code === 500) {
             alert(response.message)
           } else {
-            alert(response.message)
+            console.log(response.message)
             this.$router.push('/')
           }
         })

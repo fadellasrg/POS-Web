@@ -64,7 +64,7 @@
               </div>
               <div
                 v-else
-                class="col-lg-4 col-md-6 col-6"
+                class="col-lg-4 col-md-6 col-sm-6 col-12"
                 v-for="(item, index) in gettersListProducts"
                 :key="index"
               >
@@ -88,7 +88,7 @@
         <!--  -->
         <div
           id="hrefCart"
-          class="col-md-4 col-sm-6 col-6 text-center"
+          class="col-md-4 col-sm-12 col-12 text-center"
           style="min-height: 100vh;"
         >
           <!-- <componentCart :dataCartProducts = "dataCart"/> -->
@@ -96,14 +96,14 @@
             <div style="display: flex" class="row cart">
               <div v-for="(item, index) in dataCart" :key="index">
                 <div class="row cart">
-                  <div class="col-md-4 col-sm-4 col-6">
+                  <div class="col-lg-4 col-md-5 col-sm-4 col-4">
                     <img
                       :src="`${serverURL}/images/${item.images}`"
                       :alt="item.category"
                       class="figure-img img-fluid rounded"
                     />
                   </div>
-                  <div class="col-md-4 col-sm-4 col-2">
+                  <div class="col-lg-4 col-md-2 col-sm-4 col-4">
                     {{ item.name }}
                     <div class="btn-group" role="group">
                       <button
@@ -129,7 +129,7 @@
                       </button>
                     </div>
                   </div>
-                  <div class="col-md-4 col-sm-4 col-2 price">
+                  <div class="col-lg-4 col-md-5 col-sm-4 col-4 price">
                     {{ convertRP(Number(item.totalPrice)) }}
                     <button id="btnDelete" @click="deleteCart(item.id_product)">
                       Delete
@@ -361,7 +361,7 @@ export default {
           item.qty -= 1
           item.totalPrice = item.qty * item.price
           if (item.qty === 0) {
-            const alert = confirm('Delete this product?')
+            const alert = confirm('Delete product from cart?')
             if (alert === true) {
               const newCart = this.dataCart.filter(item => {
                 return item.id_product !== idProduct

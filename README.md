@@ -28,4 +28,4 @@ This is the frontend service for this app. You can see the backend service [here
 
 ## Documentation
 - [Backend](https://github.com/fadellasrg/POS-API)
-- [Deploy]
+- [Deploy](http://bit.ly/MugsCoffee)
